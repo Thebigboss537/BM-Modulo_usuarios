@@ -24,7 +24,7 @@ namespace Usuarios.Repositorio
 
             if (usuario.Id_usuario > 0)
             {
-                usuario.Id_usuario_autenticacion = Convert.ToInt32(_db.Usuarios_autenticacion.FirstOrDefault(e => e.Username == usuario.Cedula).Id_usuario_autenticacion);
+                //usuario.Id_usuario_autenticacion = Convert.ToInt32(_db.Usuarios_autenticacion.FirstOrDefault(e => e.Username == usuario.Cedula).Id_usuario_autenticacion);
                 _db.Usuarios.Update(usuario);
             }
             else
