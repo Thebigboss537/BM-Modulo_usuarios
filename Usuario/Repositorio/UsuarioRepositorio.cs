@@ -53,12 +53,15 @@ namespace Usuarios.Repositorio
         {
             try
             {
-                Usuario cliente = await _db.Usuarios.FindAsync(id);
-                if (cliente == null)
+                Usuario usuario = await _db.Usuarios.FindAsync(id);
+                if (usuario == null)
                 {
                     return false;
                 }
-                _db.Usuarios.Remove(cliente);
+                Usuario_autenticacion usuario_Autenticacion = await _db.Usuarios_autenticacion.FirstOrDefaultAsync(e => e.Username == usuario.Cedula);
+                
+                _db.Usuarios.Remove(usuario);
+                _db.Usuarios_autenticacion.Remove(usuario_Autenticacion);
                 await _db.SaveChangesAsync();
 
                 return true;
