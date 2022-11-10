@@ -13,7 +13,7 @@ using Usuarios.Util;
 
 namespace Usuarios.Controllers
 {
-    [Route("api/")]
+    [Route("api/[controller]/")]
     [ApiController]
     public class UsuariosController : ControllerBase
     {
@@ -26,7 +26,7 @@ namespace Usuarios.Controllers
             _response = new ResponseDto();
         }
 
-        [HttpGet("usuarios")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarios()
         {
             try
@@ -44,7 +44,7 @@ namespace Usuarios.Controllers
             return Ok(_response);
         }
 
-        [HttpGet("usuario/{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<Usuario>> GetUsuario(int id)
         {
             var usuario = await _usuarioRepositorio.GetUsuarioById(id);
@@ -60,7 +60,7 @@ namespace Usuarios.Controllers
         }
 
 
-        [HttpPut("editarusuario/{id}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> PutUsuario(int id, UsuarioDto usuarioDto)
         {
             try
@@ -79,7 +79,7 @@ namespace Usuarios.Controllers
             }
         }
 
-        [HttpDelete("eliminarusuario/{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUsuario(int id)
         {
             try
